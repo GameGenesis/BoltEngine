@@ -10,6 +10,11 @@
 	#error Platform Not Supported
 #endif
 
+#ifdef BOLTENGINE_DEBUG
+	#define BOLTENGINE_ENABLE_ASSERTS
+#endif
+
+
 #ifdef BOLTENGINE_ENABLE_ASSERTS
 	#define BOLTENGINE_ASSERT(x, ...) { if(!(x)) { BOLTENGINE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define BOLTENGINE_CORE_ASSERT(x, ...) { if(!(x)) { BOLTENGINE_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
@@ -19,3 +24,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#define BOLTENGINE_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
