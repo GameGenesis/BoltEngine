@@ -7,6 +7,11 @@
 #include "BoltEngine/Events/Event.h"
 #include "BoltEngine/Events/ApplicationEvent.h"
 
+#include "BoltEngine/ImGui/ImGuiLayer.h"
+
+#include "BoltEngine/Renderer/Shader.h"
+#include "BoltEngine/Renderer/Buffer.h"
+
 namespace BoltEngine
 {
 
@@ -14,7 +19,7 @@ namespace BoltEngine
 	{
 	public:
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 
@@ -30,8 +35,14 @@ namespace BoltEngine
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Runnig = true;
 		LayerStack m_LayerStack;
+
+		unsigned int m_VertexArray;
+		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	private:
 		static Application* s_Instance;
 	};

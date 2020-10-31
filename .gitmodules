@@ -7,3 +7,6 @@
 [submodule "BoltEngine/vendor/imgui"]
 	path = BoltEngine/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "BoltEngine/vendor/glm"]
+	path = BoltEngine/vendor/glm
+	url = https://github.com/g-truc/glm

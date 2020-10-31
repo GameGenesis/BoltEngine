@@ -21,15 +21,15 @@ namespace BoltEngine
 }
 
 //Core log macros
-#define BOLTENGINE_CORE_TRACE(...)    ::BoltEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define BOLTENGINE_CORE_INFO(...)     ::BoltEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define BOLTENGINE_CORE_WARN(...)     ::BoltEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define BOLTENGINE_CORE_ERROR(...)    ::BoltEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define BOLTENGINE_CORE_FATAL(...)    ::BoltEngine::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define BOLTENGINE_CORE_TRACE(...)     ::BoltEngine::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define BOLTENGINE_CORE_INFO(...)      ::BoltEngine::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define BOLTENGINE_CORE_WARN(...)      ::BoltEngine::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define BOLTENGINE_CORE_ERROR(...)     ::BoltEngine::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define BOLTENGINE_CORE_CRITICAL(...)  ::BoltEngine::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 //Client log macros
-#define BOLTENGINE_TRACE(...)         ::BoltEngine::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define BOLTENGINE_INFO(...)          ::BoltEngine::Log::GetClientLogger()->info(__VA_ARGS__)
-#define BOLTENGINE_WARN(...)          ::BoltEngine::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define BOLTENGINE_ERROR(...)         ::BoltEngine::Log::GetClientLogger()->error(__VA_ARGS__)
-#define BOLTENGINE_FATAL(...)         ::BoltEngine::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define BOLTENGINE_TRACE(...)          ::BoltEngine::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define BOLTENGINE_INFO(...)           ::BoltEngine::Log::GetClientLogger()->info(__VA_ARGS__)
+#define BOLTENGINE_WARN(...)           ::BoltEngine::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define BOLTENGINE_ERROR(...)          ::BoltEngine::Log::GetClientLogger()->error(__VA_ARGS__)
+#define BOLTENGINE_CRITICAL(...)       ::BoltEngine::Log::GetClientLogger()->critical(__VA_ARGS__)

@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef BOLTENGINE_PLATFORM_WINDOWS
+#if BOLTENGINE_DYNAMIC_LINK
 	#ifdef BOLTENGINE_BUILD_DLL
 		#define BOLTENGINE_API __declspec(dllexport)
 	#else
 		#define BOLTENGINE_API __declspec(dllimport)
 	#endif
+#else
+	#define BOLTENGINE_API
+#endif
 #else
 	#error Platform Not Supported
 #endif

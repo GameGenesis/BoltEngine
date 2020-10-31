@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "BoltEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "BoltEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "BoltEngine/vendor/imgui"
+IncludeDir["glm"] = "BoltEngine/vendor/glm"
 
 group "Dependencies"
 	include "BoltEngine/vendor/GLFW"
@@ -25,9 +26,10 @@ group ""
 
 project "BoltEngine"
 	location "BoltEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -38,7 +40,14 @@ project "BoltEngine"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -47,10 +56,11 @@ project "BoltEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
-	links 
+	links
 	{ 
 		"GLFW",
 		"Glad",
@@ -59,7 +69,6 @@ project "BoltEngine"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -69,31 +78,27 @@ project "BoltEngine"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "BOLTENGINE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "BOLTENGINE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "BOLTENGINE_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -107,7 +112,9 @@ project "Sandbox"
 	includedirs
 	{
 		"BoltEngine/vendor/spdlog/include",
-		"BoltEngine/src"
+		"BoltEngine/src",
+		"BoltEngine/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -116,7 +123,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -127,14 +133,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "BOLTENGINE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "BOLTENGINE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "BOLTENGINE_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

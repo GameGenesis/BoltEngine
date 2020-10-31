@@ -6,6 +6,10 @@
 #include "BoltEngine/Layer.h"
 #include "BoltEngine/Log.h"
 
+#include "BoltEngine/Input.h"
+#include "BoltEngine/KeyCodes.h"
+#include "BoltEngine/MouseButtonCodes.h"
+
 #include "BoltEngine/ImGui/ImGuiLayer.h"
 
 //---EntryPoint---
